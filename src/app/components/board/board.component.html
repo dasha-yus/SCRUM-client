@@ -1,0 +1,71 @@
+<div class="board" *ngIf="project">
+    <div class="board__title">
+        <h2 class="board__title-name">{{ project.name }}</h2>
+        <h2 class="board__title-name">Sprint {{ project.sprint }}</h2>
+    </div>
+    <div class="scrum">
+        <div class="scrum__block">
+            <h3 class="scrum__block-title">TODO</h3>
+            <div class="scrum__block-body" *ngFor="let task of tasks">
+                <div class="task" *ngIf="project.sprint == task.sprint && task.status_in_sprint == 1">
+                    <div>
+                        <h4 class="task__title">{{ task.name }} ({{ task.story_points }}sp)</h4>
+                        <h5 class="task__description">{{ task.description }}</h5>
+                    </div>
+                    <div class="task__btns">
+                        <i class="fas fa-arrow-circle-right" title="move to DOING" (click)="changeStatus(task._id, 2)"></i>
+                        <i class="fas fa-edit" title="edit" [routerLink]="['/edit', task._id]"></i>
+                        <i class="fas fa-trash-alt" title="remove from sprint" (click)="removeFromSprint(task._id)"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scrum__block">
+            <h3 class="scrum__block-title">DOING</h3>
+            <div class="scrum__block-body" *ngFor="let task of tasks">
+                <div class="task" *ngIf="project.sprint == task.sprint && task.status_in_sprint == 2">
+                    <div>
+                        <h4 class="task__title">{{ task.name }} ({{ task.story_points }}sp)</h4>
+                        <h5 class="task__description">{{ task.description }}</h5>
+                    </div>
+                    <div class="task__btns">
+                        <i class="fas fa-arrow-circle-left" title="move to TODO" (click)="changeStatus(task._id, 1)"></i>
+                        <i class="fas fa-arrow-circle-right" title="move to DONE" (click)="changeStatus(task._id, 3)"></i>
+                        <i class="fas fa-edit" title="edit" [routerLink]="['/edit', task._id]"></i>
+                        <i class="fas fa-trash-alt" title="remove from sprint" (click)="removeFromSprint(task._id)"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scrum__block">
+            <h3 class="scrum__block-title">
+                DONE <i class="fas fa-check-square" title="finish sprint" (click)="switchSprint()" *ngIf="canSwitchSprint()"></i>
+            </h3>
+            <h3 class="scrum__block-title" *ngIf="!canSwitchSprint">DONE</h3>
+            <div class="scrum__block-body" *ngFor="let task of tasks">
+                <div class="task" *ngIf="project.sprint == task.sprint && task.status_in_sprint == 3">
+                    <div>
+                        <h4 class="task__title">{{ task.name }} ({{ task.story_points }}sp)</h4>
+                        <h5 class="task__description">{{ task.description }}</h5>
+                    </div>
+                    <div class="task__btns">
+                        <i class="fas fa-arrow-circle-left" title="move to DOING" (click)="changeStatus(task._id, 2)"></i>
+                        <i class="fas fa-edit" title="edit" [routerLink]="['/edit', task._id]"></i>
+                        <i class="fas fa-trash-alt" title="remove from sprint" (click)="removeFromSprint(task._id)"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sprint-backlog">
+        <h2 class="sprint-backlog__title">Sprint Backlog</h2>
+        <div class="sprint-backlog__tasks">
+            <div class="sprint-backlog__task" *ngFor="let task of filterBySprint">
+                <h4 class="sprint-backlog__task__title">{{ task.name }}</h4>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="board else" *ngIf="!project">
+    <h1>Create your first project to get started or select one of the previously created</h1>
+</div>

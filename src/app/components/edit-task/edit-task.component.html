@@ -1,0 +1,34 @@
+<div class="new-task">
+    <form class="form" (submit)="editTask(id)">
+        <h1 class="header">Edit task</h1>
+        <flash-messages></flash-messages>
+        
+        <div class="form-group">
+            <i class="fas fa-heading"></i>
+            <input type="text" [(ngModel)]="name" name="title" class="input" required>
+        </div>
+
+        <div class="form-group">
+            <i class="fas fa-align-justify"></i>
+            <input type="text" [(ngModel)]="description" name="description" class="input" required>
+        </div>
+
+        <div class="sp">
+            <p>Story points:</p>
+            <div class="rating">
+                <input type="radio" name="sp" [value]="10" [(ngModel)]="sp" id="rate10" checked><label for="rate10">10</label>
+                <input type="radio" name="sp" [value]="9" [(ngModel)]="sp" id="rate9" checked><label for="rate9">9</label>
+                <input type="radio" name="sp" [value]="8" [(ngModel)]="sp" id="rate8" checked><label for="rate8">8</label>
+                <input type="radio" name="sp" [value]="7" [(ngModel)]="sp" id="rate7" checked><label for="rate7">7</label>
+                <input type="radio" name="sp" [value]="6" [(ngModel)]="sp" id="rate6" checked><label for="rate6">6</label>
+                <input type="radio" name="sp" [value]="5" [(ngModel)]="sp" id="rate5" checked><label for="rate5">5</label>
+                <input type="radio" name="sp" [value]="4" [(ngModel)]="sp" id="rate4" checked><label for="rate4">4</label>
+                <input type="radio" name="sp" [value]="3" [(ngModel)]="sp" id="rate3" checked><label for="rate3">3</label>
+                <input type="radio" name="sp" [value]="2" [(ngModel)]="sp" id="rate2" checked><label for="rate2">2</label>
+                <input type="radio" name="sp" [value]="1" [(ngModel)]="sp" id="rate1" checked><label for="rate1">1</label>
+            </div>
+        </div>
+        
+        <button class="btn-submit" type="submit">SUBMIT</button>
+    </form>
+</div>

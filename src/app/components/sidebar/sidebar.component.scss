@@ -1,0 +1,83 @@
+@import "../../../styles.scss";
+
+.sidebar {
+    min-width: 20vw;
+    height: 100%;
+    background-color: $color-dark;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &__title {
+        border-bottom: 1px solid $color-secondary;
+        display: flex;
+        justify-content: space-between;
+        text-transform: uppercase;
+        padding-bottom: 1rem;
+    }
+}
+
+.fa-plus-square {
+    color: $color-secondary;
+    font-size: 3rem;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.9;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: $color-secondary;
+}
+
+.project {
+    margin-top: 2rem;
+    border: 1px solid $color-secondary;
+    padding-top: 1rem;
+    padding-bottom: .5rem;
+    text-align: center;
+    text-transform: uppercase;
+
+    &:hover,
+    & .active {
+        background-color: $color-secondary;
+        color: $color-primary;
+        border-color: $color-primary;
+        cursor: pointer;
+        transition: .3s;
+    }
+}
+
+.active {
+    background-color: $color-secondary;
+    color: $color-primary;
+}
+
+.footer {
+    font-size: 1.2rem;
+
+    &__delete {
+        border-radius: 10px;
+        padding: 1rem;
+        width: 100%;
+        margin: 2rem 0;
+        font-size: 1.5rem;
+        font-weight: 600;
+        background-color: $color-primary;
+        color: $color-secondary;
+        border-color: $color-secondary;
+        outline: none;
+
+        &:hover {
+            color: $color-primary;
+            background-color: $color-secondary;
+        }
+    }
+
+    &__text {
+        text-align: center;
+    }
+}

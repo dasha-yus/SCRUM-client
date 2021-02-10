@@ -1,0 +1,35 @@
+<div class="new-project">
+  <div class="left"></div>
+  <div class="right">
+    <form class="right__form" (submit)="addNewProject()">
+      <h1 class="header">New project</h1>
+      <flash-messages></flash-messages>
+
+      <div class="form-group">
+        <i class="fas fa-heading"></i>
+        <input
+          type="text"
+          placeholder="Title"
+          [(ngModel)]="name"
+          name="title"
+          class="input"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <i class="fas fa-align-justify"></i>
+        <input
+          type="text"
+          placeholder="Short description"
+          [(ngModel)]="description"
+          name="decription"
+          class="input"
+          required
+        />
+      </div>
+
+      <button class="btn-submit" type="submit">CREATE</button>
+    </form>
+  </div>
+</div>

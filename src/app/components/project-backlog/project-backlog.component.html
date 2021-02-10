@@ -1,0 +1,83 @@
+<div class="backlog" *ngIf="project">
+  <flash-messages></flash-messages>
+  <table class="table table-bordered table-dark">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Task</th>
+        <th>Description</th>
+        <th>Story points</th>
+        <th>Sprint</th>
+        <th>Status</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of tasks; index as i">
+        <td>{{ i + 1 }}</td>
+        <td>{{ task.name }}</td>
+        <td>{{ task.description }}</td>
+        <td>{{ task.story_points }}</td>
+        <td>{{ task.sprint }}</td>
+        <td
+          width="170"
+          [ngStyle]="{
+            backgroundColor:
+              task.status_in_project == 'To do'
+                ? 'rgb(118, 118, 255)'
+                : task.status_in_project == 'Done'
+                ? ' rgb(209, 76, 250)'
+                : 'rgb(255, 107, 87)'
+          }"
+        >
+          {{ task.status_in_project }}
+        </td>
+        <td width="170">
+          <button
+            type="button"
+            class="btn btn-success"
+            (click)="addTaskToSprint(task._id)"
+            *ngIf="task.status_in_project == 'To do'"
+          >
+            Add to Sprint
+          </button>
+          <button
+            type="button"
+            class="btn btn-success"
+            *ngIf="task.status_in_project != 'To do'"
+            disabled
+          >
+            Add to Sprint
+          </button>
+        </td>
+        <td width="100">
+          <button
+            type="button"
+            class="btn btn-warning"
+            [routerLink]="['/edit', task._id]"
+          >
+            Edit
+          </button>
+        </td>
+        <td width="120">
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="deleteTask(task._id)"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <a href="/new-task" class="add">
+    <i class="fas fa-plus-square"></i>
+    <hr />
+  </a>
+</div>
+<h1 class="no-project" *ngIf="!project">
+  No project selected. Go to the <a href="/">Board page</a> and choose a project
+</h1>

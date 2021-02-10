@@ -1,0 +1,122 @@
+@import "../../../styles.scss";
+
+.board {
+    padding: 3rem;
+    width: 79vw;
+
+    &__title {
+        border-bottom: 1px solid $color-secondary;
+        padding-bottom: 1rem;
+        display: flex;
+        justify-content: space-between;
+
+        &-name {
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: .2rem;
+        }
+    }
+}
+
+.scrum {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2rem;
+
+    &__block {
+        border: 2px solid $color-secondary;
+        width: 30%;
+        min-height: 50vh;
+
+        &-title {
+            text-align: center;
+            padding: 1rem;
+            border-bottom: 1px solid $color-secondary;
+            font-weight: 600;
+        }
+
+        &-body {
+            margin: 2rem;
+        }
+    }
+}
+
+.task {
+    border-bottom: 1px solid $color-secondary;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    &__title {
+        margin-bottom: 1rem;
+        font-weight: 700;
+    }
+
+    &__btns {
+        display: flex;
+    }
+}
+
+.fa-edit,
+.fa-trash-alt,
+.fa-arrow-circle-right,
+.fa-arrow-circle-left,
+.fa-check-square {
+    font-size: 1.5rem;
+    padding-left: 1rem;
+
+    &:hover {
+        cursor: pointer;
+        opacity: 0.9;
+    }
+}
+
+.sprint-backlog {
+    margin-top: 4rem;
+    border: 2px solid $color-secondary;
+    min-height: 20vh;
+
+    &__title {
+        text-transform: uppercase;
+        padding: 2rem;
+    }
+
+    &__tasks {
+        display: flex;
+        flex-wrap: wrap;
+        padding-right: 1rem;
+        padding-top: 1rem;
+    }
+
+    &__task {
+        border: 1px solid $color-secondary;
+        width: 9vw;
+        margin: 0 0 2rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &__title {
+            padding: 1rem;
+            text-align: center;
+        }
+
+        &__btns {
+            font-size: 1.5rem;
+        }
+
+        &:hover {
+            cursor: pointer;
+            color: $color-primary;
+            background-color: $color-secondary;
+            transition: .3s;
+        }
+    }
+}
+
+.else {
+    width: 79vw;
+    height: calc(100vh - 6rem);
+}

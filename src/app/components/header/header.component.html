@@ -1,0 +1,41 @@
+<header class="header">
+  <a class="header__item header__logo" [routerLink]="['/']">SCRUM-BOARD <i class="far fa-sticky-note"></i></a>
+  <div>
+    <a
+      *ngIf="!authService.isLoggedIn()"
+      class="header__item header__link"
+      routerLinkActive="active"
+      [routerLink]="['/auth']"
+    >
+      LOGIN</a
+    >
+    <a
+      *ngIf="!authService.isLoggedIn()"
+      class="header__item header__link"
+      routerLinkActive="active"
+      [routerLink]="['/reg']"
+      >REGISTER</a
+    >
+    <a
+      *ngIf="authService.isLoggedIn()"
+      class="header__item header__link"
+      routerLinkActive="active"
+      [routerLink]="['/']"
+      [routerLinkActiveOptions]="{exact: true}"
+      >BOARD</a
+    >
+    <a
+      *ngIf="authService.isLoggedIn()"
+      class="header__item header__link"
+      routerLinkActive="active"
+      [routerLink]="['/backlog']"
+      >BACKLOG</a
+    >
+    <a
+      *ngIf="authService.isLoggedIn()"
+      class="header__item header__link"
+      (click)="logout()"
+      >LOGOUT</a
+    >
+  </div>
+</header>

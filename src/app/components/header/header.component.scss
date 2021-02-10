@@ -1,0 +1,33 @@
+@import "../../../styles.scss";
+
+.header {
+    background-color: $color-secondary;
+    font-size: 2rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 3rem;
+
+    @media only screen and (max-width: 650px) {
+        font-size: 1.5rem;
+    }
+
+    &__item {
+        color: $color-primary;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    &__logo {
+        font-weight: 700;
+    }
+
+    &__link {
+        margin-left: 3rem;
+    }
+
+    & .active {
+        border-bottom: 2px solid $color-primary;
+    }
+}

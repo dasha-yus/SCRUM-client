@@ -1,0 +1,62 @@
+@import '../new-project/new-project.component.scss';
+
+.new-task {
+    background: url('../../../assets/new-task.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: calc(100vh - 6rem);
+    position: relative;
+
+    & .form {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: $color-secondary;
+        border-radius: 10px;
+        padding: 3rem;
+        width: 38rem;
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+}
+
+.sp {
+    width: 100%;
+
+    & p {
+        font-size: 2rem;
+    }
+
+    & .rating {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row-reverse;
+        margin-top: 1rem;
+        border: 1px solid $color-primary;
+        box-sizing: border-box;
+        background: linear-gradient(to right, #f00, #ff0, #0f0);
+
+        & input {
+            display: none;
+
+            &[type="radio"]:hover ~ label,
+            &[type="radio"]:checked ~ label {
+                background: transparent;
+            }
+        }
+
+        & label {
+            display: block;
+            cursor: pointer;
+            width: 5rem;
+            height: 4rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: .5s;
+            background: $color-secondary;
+            color: $color-primary;
+            border-right: 1px solid $color-primary;
+        }
+    }
+}

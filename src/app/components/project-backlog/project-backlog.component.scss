@@ -1,0 +1,67 @@
+@import "../../../styles.scss";
+
+.table {
+    font-size: 1.4rem;
+    text-align: center;
+    color: $color-secondary;
+
+    & td {
+        background-color: $color-primary;
+        vertical-align: middle;
+    }
+}
+
+// #status {
+
+//     &-to-do {
+//         background-color: $status-todo;
+//     }
+    
+//     &-in-progress {
+//         background-color: $status-in-progress;
+//     }
+
+//     &-done {
+//         background-color: $status-done;
+//     }
+// }
+
+.fa-trash:hover {
+    cursor: pointer;
+    color: rgb(255, 88, 88);
+}
+
+.no-project {
+    color: $color-secondary;
+    margin: 3rem;
+
+    & a {
+        text-decoration: none;
+    }
+}
+
+.add {
+    display: flex;
+    align-items: center;
+    font-size: 2.5rem;
+    text-decoration: none;
+
+    & .fa-plus-square {
+        color: $color-secondary;
+    }
+
+    & hr {
+        background-color: $color-secondary;
+        width: 100vw;
+    }
+
+    &:hover {
+        opacity: .9;
+        cursor: pointer;
+    }
+}
+
+.btn {
+    font-size: 1.6rem;
+    padding: .2rem 1.2rem;
+}

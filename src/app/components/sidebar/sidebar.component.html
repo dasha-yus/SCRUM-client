@@ -1,0 +1,20 @@
+<div class="sidebar">
+    <div>
+        <div class="sidebar__title">
+            <h2 class="sidebar__title-name">Projects</h2>
+            <i class="fas fa-plus-square" (click)="goToPage('new-project')"></i>
+        </div>
+        <div class="projects" *ngFor="let project of projects">
+            <div class="project" (click)="getProjectId(project._id)" *ngIf="!compareProjectsIds(project._id)">
+                <h3>{{ project.name }}</h3>
+            </div>
+            <div class="project active" (click)="getProjectId(project._id)" *ngIf="compareProjectsIds(project._id)">
+                <h3>{{ project.name }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <button class="footer__delete" (click)="deleteProject()" *ngIf="projects.length >= 1">Delete selected</button>
+        <p class="footer__text">Copyright &copy; 2021. All Rights Reserved.</p>
+    </div>
+</div>

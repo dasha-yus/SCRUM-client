@@ -1,0 +1,55 @@
+<div class="auth">
+  <form (submit)="userRegisterClick()" class="my-form">
+    <h1 class="header">Create a new account</h1>
+    <flash-messages></flash-messages>
+    <div class="form-group">
+      <i class="fas fa-user"></i>
+      <input
+        type="text"
+        [(ngModel)]="name"
+        placeholder="Username"
+        name="name"
+        class="input"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <i class="fas fa-envelope"></i>
+      <input
+        type="email"
+        [(ngModel)]="email"
+        placeholder="Email"
+        name="email"
+        class="input"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <i class="fas fa-lock"></i>
+      <input
+        type="password"
+        [(ngModel)]="password"
+        placeholder="Password"
+        name="password"
+        class="input"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <i class="fas fa-lock"></i>
+      <input
+        type="password"
+        [(ngModel)]="passwordCheck"
+        placeholder="Confirm password"
+        name="passwordCheck"
+        class="input"
+        required
+      />
+    </div>
+
+    <button class="btn-submit" type="submit">CREATE ACCOUNT</button>
+  </form>
+</div>
