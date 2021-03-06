@@ -1,10 +1,10 @@
-@import '../new-project/new-project.component.scss';
+@import '../../new-project/new-project.component.scss';
 
-.new-task {
-    background: url('../../../assets/new-task.jpg');
+.task {
+    background: url('../../../../assets/new-task.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    height: calc(100vh - 6rem);
+    height: 100vh;
     position: relative;
 
     & .form {
@@ -12,10 +12,10 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        background-color: $color-secondary;
+        background-color: var(--color-secondary);
         border-radius: 10px;
         padding: 3rem;
-        width: 38rem;
+        width: 25%;
         box-shadow: 0 0 10px rgba(0,0,0,0.5);
     }
 }
@@ -32,7 +32,7 @@
         justify-content: space-between;
         flex-direction: row-reverse;
         margin-top: 1rem;
-        border: 1px solid $color-primary;
+        border: 1px solid var(--color-primary);
         box-sizing: border-box;
         background: linear-gradient(to right, #f00, #ff0, #0f0);
 
@@ -54,9 +54,10 @@
             justify-content: center;
             align-items: center;
             transition: .5s;
-            background: $color-secondary;
-            color: $color-primary;
-            border-right: 1px solid $color-primary;
+            background: var(--color-secondary);
+            color: var(--color-primary);
+            border-right: 1px solid var(--color-primary);
+            margin-bottom: 0;
         }
     }
 }

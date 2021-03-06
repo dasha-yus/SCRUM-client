@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router } from '@angular/router';
 import { User } from '../../models/user';
+import { AuthData } from '../../models/auth-data';
 
 @Component({
   selector: 'app-auth',
@@ -28,7 +29,7 @@ export class AuthComponent implements OnInit {
     };
 
     this.authService.authUser(user).subscribe(
-      (data: any) => {
+      (data: AuthData) => {
         this.router.navigate(['/']);
         this.authService.storeUser(data.token, data.user);
       },

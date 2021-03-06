@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CRUDService } from '../../services/CRUD.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { Project } from '../../models/project';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,7 +10,7 @@ import { FlashMessagesService } from 'angular2-flash-messages';
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements OnInit {
-  projects: any = [];
+  projects: Project[] = [];
 
   constructor(
     private router: Router,
@@ -19,7 +20,7 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.CRUDService.getRequest('/projects').subscribe({
-      next: (data) => {
+      next: (data: Project[]) => {
         this.projects = data;
       },
       error: (error) => {
@@ -52,7 +53,8 @@ export class SidebarComponent implements OnInit {
     );
     if (conf) {
       this.CRUDService.deleteRequest(`/projects/${id}`).subscribe(
-        (data: any) => {
+        (data: Project) => {
+          localStorage.removeItem('current_project');
           location.reload();
         },
         (err) => {

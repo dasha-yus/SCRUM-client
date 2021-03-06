@@ -18,17 +18,31 @@ import { RegComponent } from './components/auth/reg/reg.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { ProjectBacklogComponent } from './components/project-backlog/project-backlog.component';
 import { NewProjectComponent } from './components/new-project/new-project.component';
-import { NewTaskComponent } from './components/new-task/new-task.component';
-import { EditTaskComponent } from './components/edit-task/edit-task.component';
+import { NewTaskComponent } from './components/task/new-task/new-task.component';
+import { EditTaskComponent } from './components/task/edit-task/edit-task.component';
+import { NotFoundComponent } from './components/404/404.component';
 
 const appRoute: Routes = [
   { path: '', component: HomeComponent, canActivate: [IsLoggedIn] },
   { path: 'reg', component: RegComponent },
   { path: 'auth', component: AuthComponent },
-  { path: 'backlog', component: ProjectBacklogComponent, canActivate: [IsLoggedIn] },
-  { path: 'new-project', component: NewProjectComponent, canActivate: [IsLoggedIn] },
+  {
+    path: 'backlog',
+    component: ProjectBacklogComponent,
+    canActivate: [IsLoggedIn],
+  },
+  {
+    path: 'new-project',
+    loadChildren: () =>
+      import('./new-project/new-project.module').then(
+        (m) => m.NewProjectModule
+      ),
+    canActivate: [IsLoggedIn],
+  },
   { path: 'new-task', component: NewTaskComponent, canActivate: [IsLoggedIn] },
   { path: 'edit/:id', component: EditTaskComponent, canActivate: [IsLoggedIn] },
+  { path: '404', component: NotFoundComponent },
+  { path: '**', redirectTo: '/404' },
 ];
 
 @NgModule({
@@ -44,6 +58,7 @@ const appRoute: Routes = [
     NewProjectComponent,
     NewTaskComponent,
     EditTaskComponent,
+    NotFoundComponent,
   ],
 
   imports: [

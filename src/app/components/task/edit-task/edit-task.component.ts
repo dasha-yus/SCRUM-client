@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { CRUDService } from '../../services/CRUD.service';
+import { CRUDService } from '../../../services/CRUD.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
-import { Task } from '../../models/task';
+import { Task } from '../../../models/task';
 
 @Component({
   selector: 'app-edit-task',
-  templateUrl: './edit-task.component.html',
+  templateUrl: '../task.component.html',
   styleUrls: ['./edit-task.component.scss'],
 })
 export class EditTaskComponent implements OnInit {
@@ -16,6 +16,7 @@ export class EditTaskComponent implements OnInit {
   task: Task;
   id: string;
   projectId: string = localStorage.getItem('current_project');
+  action: string = 'Edit task';
 
   constructor(
     private CRUDService: CRUDService,
@@ -29,7 +30,7 @@ export class EditTaskComponent implements OnInit {
     this.CRUDService.getRequest(
       `/tasks/${this.projectId}/tasks/${this.id}`
     ).subscribe({
-      next: (data: any) => {
+      next: (data: Task) => {
         this.name = data.name;
         this.description = data.description;
         this.sp = data.story_points;
@@ -40,17 +41,16 @@ export class EditTaskComponent implements OnInit {
     });
   }
 
-  editTask(id) {
+  submit() {
     const task: Task = {
       name: this.name,
       description: this.description,
       story_points: this.sp,
     };
-    this.CRUDService.putRequest(`/tasks/edit/${id}`, task).subscribe(
+    this.CRUDService.putRequest(`/tasks/edit/${this.id}`, task).subscribe(
       (data: Task) => {
         this.task = data;
         this.router.navigate([`/backlog`]);
-        alert('The task was successfully updated');
       },
       (err) => {
         this.flashMessages.show(err, {

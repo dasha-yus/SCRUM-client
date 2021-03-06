@@ -1,6 +1,5 @@
-@import "../../../styles.scss";
-
 .main {
-    color: $color-secondary;
+    color: var(--color-secondary);
     display: flex;
+    padding-top: 7rem;
 }

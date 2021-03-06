@@ -1,16 +1,16 @@
-<div class="new-task">
-    <form class="form" (submit)="editTask(id)">
-        <h1 class="header">Edit task</h1>
+<div class="task">
+    <form class="form" (submit)="submit()">
+        <h1 class="header">{{ action }}</h1>
         <flash-messages></flash-messages>
         
         <div class="form-group">
             <i class="fas fa-heading"></i>
-            <input type="text" [(ngModel)]="name" name="title" class="input" required>
+            <input type="text" [(ngModel)]="name" name="title" class="input" placeholder="Title" required>
         </div>
 
         <div class="form-group">
             <i class="fas fa-align-justify"></i>
-            <input type="text" [(ngModel)]="description" name="description" class="input" required>
+            <input type="text" [(ngModel)]="description" name="description" placeholder="Short description" class="input" required>
         </div>
 
         <div class="sp">

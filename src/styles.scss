@@ -1,27 +1,29 @@
-$color-primary: rgb(12, 22, 24);
-$color-secondary: rgb(250, 244, 211);
-$color-dark: rgb(0, 41, 39);
-
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 *,
 *::after,
 *::before {
-    box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+:root {
+  --color-primary: rgb(12, 22, 24);
+  --color-secondary: rgb(250, 244, 211);
+  --color-dark: rgb(0, 41, 39);
 }
 
 html {
-    box-sizing: border-box;
-    font-size: 62.5%;
+  box-sizing: border-box;
+  font-size: 62.5%;
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
-    background-color: $color-primary;
-    font-weight: 400;
-    line-height: 1.6;
-    min-height: 100vh;
+  font-family: "Open Sans", sans-serif;
+  background-color: var(--color-primary);
+  font-weight: 400;
+  line-height: 1.6;
+  min-height: 100vh;
 }

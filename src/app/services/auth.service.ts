@@ -4,17 +4,18 @@ import { tokenNotExpired } from 'angular2-jwt';
 import { Router } from '@angular/router';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   token: string;
-  user: object;
+  user: User;
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  registerUser(user) {
+  registerUser(user: User) {
     return this.http.post('http://localhost:5000/register', user).pipe(
       catchError((err) => {
         return throwError(err);
@@ -22,7 +23,7 @@ export class AuthService {
     );
   }
 
-  authUser(user: object) {
+  authUser(user: User) {
     return this.http.post('http://localhost:5000/login', user).pipe(
       catchError((err) => {
         return throwError(err);

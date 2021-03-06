@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CRUDService } from '../../services/CRUD.service';
 import { Status } from '../../status.enum';
+import { Project } from '../../models/project';
+import { Task } from '../../models/task';
 
 @Component({
   selector: 'app-board',
@@ -8,15 +10,16 @@ import { Status } from '../../status.enum';
   styleUrls: ['./board.component.scss'],
 })
 export class BoardComponent implements OnInit {
-  project: any;
-  tasks: any;
+  project: Project = { name: '', author: '', description: '' };
+  tasks: Task[] = [];
   project_id = localStorage.getItem('current_project');
 
   constructor(private CRUDService: CRUDService) {}
 
   ngOnInit(): void {
+    if (!this.project_id) this.project_id = '';
     this.CRUDService.getRequest(`/projects/${this.project_id}`).subscribe({
-      next: (data) => {
+      next: (data: Project) => {
         this.project = data;
       },
       error: (error) => {
@@ -24,7 +27,7 @@ export class BoardComponent implements OnInit {
       },
     });
     this.CRUDService.getRequest(`/tasks/${this.project_id}`).subscribe({
-      next: (data: any) => {
+      next: (data: Task[]) => {
         this.tasks = data.sort((a, b) => b.story_points - a.story_points);
       },
       error: (error) => {
@@ -33,7 +36,7 @@ export class BoardComponent implements OnInit {
     });
   }
 
-  removeFromSprint(id) {
+  removeFromSprint(id: string) {
     const conf = window.confirm(
       `Are you sure you want to remove the task from sprint?`
     );
@@ -42,8 +45,8 @@ export class BoardComponent implements OnInit {
         status_in_project: Status.ToDo,
         sprint: 0,
       }).subscribe(
-        (data: any) => {
-          location.reload();
+        (data: Project) => {
+          this.ngOnInit();
         },
         (err) => {
           console.log(err);
@@ -52,12 +55,12 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  changeStatus(id, status_num) {
+  changeStatus(id: string, status_num: number) {
     this.CRUDService.putRequest(`/tasks/edit/${id}`, {
       status_in_sprint: status_num,
     }).subscribe(
-      (data: any) => {
-        location.reload();
+      (data: Project) => {
+        this.ngOnInit();
       },
       (err) => {
         console.log(err);
@@ -85,11 +88,11 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  updateProject(id) {
+  updateProject(id: string) {
     this.CRUDService.putRequest(`/projects/edit/${id}`, {
       sprint: this.project.sprint + 1,
     }).subscribe(
-      (data: any) => {
+      (data: Project) => {
         this.project = data;
       },
       (err) => {
@@ -98,12 +101,12 @@ export class BoardComponent implements OnInit {
     );
   }
 
-  updateTask(id) {
+  updateTask(id: string) {
     this.CRUDService.putRequest(`/tasks/edit/${id}`, {
       status_in_project: Status.Done,
       status_in_sprint: 0,
     }).subscribe(
-      (data: any) => {
+      (data: Project) => {
         this.project = data;
       },
       (err) => {

@@ -1,11 +1,9 @@
-@import "../../../styles.scss";
-
 .board {
     padding: 3rem;
     width: 79vw;
 
     &__title {
-        border-bottom: 1px solid $color-secondary;
+        border-bottom: 1px solid var(--color-secondary);
         padding-bottom: 1rem;
         display: flex;
         justify-content: space-between;
@@ -25,14 +23,14 @@
     margin-top: 2rem;
 
     &__block {
-        border: 2px solid $color-secondary;
+        border: 2px solid var(--color-secondary);
         width: 30%;
         min-height: 50vh;
 
         &-title {
             text-align: center;
             padding: 1rem;
-            border-bottom: 1px solid $color-secondary;
+            border-bottom: 1px solid var(--color-secondary);
             font-weight: 600;
         }
 
@@ -43,7 +41,7 @@
 }
 
 .task {
-    border-bottom: 1px solid $color-secondary;
+    border-bottom: 1px solid var(--color-secondary);
     margin-bottom: 2rem;
     display: flex;
     justify-content: space-between;
@@ -63,6 +61,7 @@
 .fa-trash-alt,
 .fa-arrow-circle-right,
 .fa-arrow-circle-left,
+.fa-arrow-circle-up,
 .fa-check-square {
     font-size: 1.5rem;
     padding-left: 1rem;
@@ -73,9 +72,13 @@
     }
 }
 
+.fa-arrow-circle-up {
+    padding-left: 0;
+}
+
 .sprint-backlog {
     margin-top: 4rem;
-    border: 2px solid $color-secondary;
+    border: 2px solid var(--color-secondary);
     min-height: 20vh;
 
     &__title {
@@ -90,8 +93,15 @@
         padding-top: 1rem;
     }
 
+    &__card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+    }
+
     &__task {
-        border: 1px solid $color-secondary;
+        border: 1px solid var(--color-secondary);
         width: 9vw;
         margin: 0 0 2rem 2rem;
         display: flex;
@@ -109,8 +119,8 @@
 
         &:hover {
             cursor: pointer;
-            color: $color-primary;
-            background-color: $color-secondary;
+            color: var(--color-primary);
+            background-color: var(--color-secondary);
             transition: .3s;
         }
     }

@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { CRUDService } from '../../services/CRUD.service';
+import { CRUDService } from '../../../services/CRUD.service';
 import { Router } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
-import { Task } from '../../models/task';
+import { Task } from '../../../models/task';
 
 @Component({
   selector: 'app-new-task',
-  templateUrl: './new-task.component.html',
+  templateUrl: '../task.component.html',
   styleUrls: ['./new-task.component.scss'],
 })
 export class NewTaskComponent implements OnInit {
   name: string;
   description: string;
   sp: number;
+  action: string = 'New task';
 
   constructor(
     private CRUDService: CRUDService,
@@ -22,7 +23,7 @@ export class NewTaskComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  addNewTask() {
+  submit() {
     if (this.name == undefined) {
       this.flashMessages.show('Title is not entered', {
         cssClass: 'alert-danger',
@@ -52,9 +53,6 @@ export class NewTaskComponent implements OnInit {
       ).subscribe(
         (data: Task) => {
           this.router.navigate([`/backlog`]);
-          alert(
-            `The task with the name ${data.name} was successfully added to the project`
-          );
         },
         (err) => {
           this.flashMessages.show(err.error.msg, {

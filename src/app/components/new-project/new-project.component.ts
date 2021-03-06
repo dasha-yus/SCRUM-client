@@ -39,7 +39,7 @@ export class NewProjectComponent implements OnInit {
         description: this.description,
       };
       this.CRUDService.postRequest('/projects/new-project', project).subscribe(
-        (data: any) => {
+        (data: Project) => {
           localStorage.setItem('current_project', data._id);
           this.router.navigate([`/`]);
         },
