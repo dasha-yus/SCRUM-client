@@ -54,7 +54,7 @@ export class SidebarComponent implements OnInit {
     if (conf) {
       this.CRUDService.deleteRequest(`/projects/${id}`).subscribe(
         (data: Project) => {
-          localStorage.removeItem('current_project');
+          localStorage.setItem('current_project', '');
           location.reload();
         },
         (err) => {

@@ -1,4 +1,4 @@
-<div class="backlog" *ngIf="project_id">
+<div class="backlog" *ngIf="project_id !== '' && project; else elseBlock">
   <flash-messages></flash-messages>
   <table class="table table-bordered table-dark">
     <thead>
@@ -78,6 +78,8 @@
     <hr />
   </a>
 </div>
-<h1 class="no-project" *ngIf="!project_id">
-  No project selected. Go to the <a href="/">Board page</a> and choose a project
-</h1>
+<ng-template #elseBlock>  
+  <h1 class="no-project" style="padding-top: 7rem;">
+    No project selected. Go to the <a href="/">Board page</a> and choose a project
+  </h1>
+</ng-template>   

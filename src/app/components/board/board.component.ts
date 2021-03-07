@@ -12,7 +12,7 @@ import { Task } from '../../models/task';
 export class BoardComponent implements OnInit {
   project: Project = { name: '', author: '', description: '' };
   tasks: Task[] = [];
-  project_id = localStorage.getItem('current_project');
+  project_id: string = localStorage.getItem('current_project');
 
   constructor(private CRUDService: CRUDService) {}
 
@@ -84,7 +84,7 @@ export class BoardComponent implements OnInit {
         this.updateTask(task._id);
       });
       this.updateProject(this.project_id);
-      location.reload();
+      this.ngOnInit();
     }
   }
 
