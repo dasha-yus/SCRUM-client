@@ -1,56 +1,60 @@
-@import '../auth/auth.component.scss';
+@import "../auth/auth.component.scss";
 
 .new-project {
-    background-color: var(--color-primary);
-    height: 100vh;
-    display: flex;
+  background-color: var(--color-primary);
+  height: 100vh;
+  display: flex;
 
-    & .right {
-        width: 50%;
-        position: relative;
+  & .right {
+    width: 50%;
+    position: relative;
 
-        @media only screen and (max-width: 900px) {
-            width: 100%;
-        }
-
-        &__form {
-            background-color: var(--color-secondary);
-            position: absolute;
-            top: 55%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 5rem 4rem;
-            border-radius: 10px;
-            width: 35rem;
-            box-shadow: 0 0 10px rgba(var(--color-secondary), 0.5);
-        }
+    @media only screen and (max-width: 900px) {
+      width: 100%;
     }
 
-    & .left {
-        width: 50%;
-        background: url("../../../assets/new-project.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
-
-        @media only screen and (max-width: 900px) {
-            display: none;
-        }
+    &__form {
+      background-color: var(--color-secondary);
+      position: absolute;
+      top: 55%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 5rem 4rem;
+      border-radius: 10px;
+      width: 35rem;
+      box-shadow: 0 0 10px rgba(var(--color-secondary), 0.5);
     }
+  }
+
+  & .left {
+    width: 50%;
+    background: url("../../../assets/new-project.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    @media only screen and (max-width: 900px) {
+      display: none;
+    }
+  }
 }
 
 .header {
-    color: var(--color-primary);
+  color: var(--color-primary);
 }
 
 .btn-submit {
-    background-color: var(--color-secondary);
-    color: var(--color-primary);
-    border: 2px solid var(--color-primary);
-    font-weight: 800;
+  font-weight: 800;
 
-    &:hover {
-        background-color: var(--color-primary);
-        color: var(--color-secondary);
-        transition: .3s;
-    }
+  &:hover {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+    transition: 0.3s;
+  }
+}
+
+button:disabled,
+button[disabled]:hover {
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
 }

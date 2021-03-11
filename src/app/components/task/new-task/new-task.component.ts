@@ -24,43 +24,26 @@ export class NewTaskComponent implements OnInit {
   ngOnInit(): void {}
 
   submit() {
-    if (this.name == undefined) {
-      this.flashMessages.show('Title is not entered', {
-        cssClass: 'alert-danger',
-        timeout: 2000,
-      });
-    } else if (this.description == undefined) {
-      this.flashMessages.show('Description is not entered', {
-        cssClass: 'alert-danger',
-        timeout: 2000,
-      });
-    } else if (this.sp == undefined) {
-      this.flashMessages.show('Story points are not defined', {
-        cssClass: 'alert-danger',
-        timeout: 2000,
-      });
-    } else {
-      const projectId = localStorage.getItem('current_project');
-      const task: Task = {
-        name: this.name,
-        description: this.description,
-        story_points: this.sp,
-      };
+    const projectId = localStorage.getItem('current_project');
+    const task: Task = {
+      name: this.name,
+      description: this.description,
+      story_points: this.sp,
+    };
 
-      this.CRUDService.postRequest(
-        `/tasks/${projectId}/tasks/new`,
-        task
-      ).subscribe(
-        (data: Task) => {
-          this.router.navigate([`/backlog`]);
-        },
-        (err) => {
-          this.flashMessages.show(err.error.msg, {
-            cssClass: 'alert-danger',
-            timeout: 2000,
-          });
-        }
-      );
-    }
+    this.CRUDService.postRequest(
+      `/tasks/${projectId}/tasks/new`,
+      task
+    ).subscribe(
+      (data: Task) => {
+        this.router.navigate([`/backlog`]);
+      },
+      (err) => {
+        this.flashMessages.show(err.error.msg, {
+          cssClass: 'alert-danger',
+          timeout: 2000,
+        });
+      }
+    );
   }
 }

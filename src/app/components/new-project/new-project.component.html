@@ -1,35 +1,58 @@
 <div class="new-project">
   <div class="left"></div>
   <div class="right">
-    <form class="right__form" (submit)="addNewProject()">
+    <form
+      class="right__form"
+      (submit)="addNewProject()"
+      [formGroup]="myForm"
+      #newProjectForm="ngForm"
+    >
       <h1 class="header">New project</h1>
-      <flash-messages></flash-messages>
 
-      <div class="form-group">
-        <i class="fas fa-heading"></i>
-        <input
-          type="text"
-          placeholder="Title"
-          [(ngModel)]="name"
-          name="title"
-          class="input"
-          required
-        />
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Title"
+        required
+        [(ngModel)]="name"
+        name="title"
+        formControlName="name"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="
+          myForm.controls['name'].invalid && myForm.controls['name'].touched
+        "
+      >
+        Title is required
       </div>
 
-      <div class="form-group">
-        <i class="fas fa-align-justify"></i>
-        <input
-          type="text"
-          placeholder="Short description"
-          [(ngModel)]="description"
-          name="decription"
-          class="input"
-          required
-        />
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Short description"
+        required
+        [(ngModel)]="description"
+        name="decription"
+        formControlName="decription"
+      />
+      <div
+        class="alert alert-danger"
+        *ngIf="
+          myForm.controls['decription'].invalid &&
+          myForm.controls['decription'].touched
+        "
+      >
+        Description is required
       </div>
 
-      <button class="btn-submit" type="submit">CREATE</button>
+      <button
+        class="btn-submit"
+        type="submit"
+        [disabled]="!newProjectForm.form.valid"
+      >
+        CREATE
+      </button>
     </form>
   </div>
 </div>

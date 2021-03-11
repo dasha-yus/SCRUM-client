@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
-import { CheckFormService } from './services/check-form.service';
 import { AuthService } from './services/auth.service';
 import { IsLoggedIn } from './isLogged.guard';
 
@@ -65,11 +65,12 @@ const appRoute: Routes = [
     BrowserModule,
     RouterModule.forRoot(appRoute),
     FormsModule,
+    ReactiveFormsModule,
     FlashMessagesModule.forRoot(),
     HttpClientModule,
   ],
 
-  providers: [CheckFormService, AuthService, IsLoggedIn],
+  providers: [AuthService, IsLoggedIn],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

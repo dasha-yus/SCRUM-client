@@ -81,3 +81,15 @@
         transition: .3s;
     }
 }
+
+.form-control {
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+}
+
+button:disabled,
+button[disabled]:hover {
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+  border: 1px solid var(--color-secondary);
+}

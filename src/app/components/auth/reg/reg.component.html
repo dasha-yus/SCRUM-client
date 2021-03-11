@@ -1,55 +1,74 @@
 <div class="auth">
-  <form (submit)="userRegisterClick()" class="my-form">
+  <form (submit)="userRegisterClick()" class="my-form" #newUserForm="ngForm">
     <h1 class="header">Create a new account</h1>
     <flash-messages></flash-messages>
-    <div class="form-group">
-      <i class="fas fa-user"></i>
-      <input
-        type="text"
-        [(ngModel)]="name"
-        placeholder="Username"
-        name="name"
-        class="input"
-        required
-      />
+
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Username"
+      required
+      [(ngModel)]="name"
+      name="name"
+      #username="ngModel"
+    />
+    <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
+      Username is required
     </div>
 
-    <div class="form-group">
-      <i class="fas fa-envelope"></i>
-      <input
-        type="email"
-        [(ngModel)]="email"
-        placeholder="Email"
-        name="email"
-        class="input"
-        required
-      />
+    <input
+      type="email"
+      class="form-control"
+      placeholder="Email"
+      required
+      [(ngModel)]="email"
+      name="email"
+      #mail="ngModel"
+      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" 
+    />
+    <div *ngIf="mail.touched" >
+      <p *ngIf="mail.errors?.required" class="alert alert-danger">Email is a required</p>
+      <p *ngIf="mail.errors?.pattern" class="alert alert-danger">This is not a valid Email</p>
     </div>
 
-    <div class="form-group">
-      <i class="fas fa-lock"></i>
-      <input
-        type="password"
-        [(ngModel)]="password"
-        placeholder="Password"
-        name="password"
-        class="input"
-        required
-      />
+    <input
+      type="password"
+      class="form-control"
+      placeholder="Password"
+      required
+      [(ngModel)]="password"
+      name="password"
+      #pass="ngModel"
+      minlength="5"
+    />
+    <div *ngIf="pass.touched" >
+      <p *ngIf="pass.errors?.required" class="alert alert-danger">Password is a required</p>
+      <p *ngIf="pass.errors?.minlength" class="alert alert-danger">Min length of the password should be 5 characters</p>
+    </div>
+    
+    <input
+      type="password"
+      class="form-control"
+      placeholder="Confirm password"
+      required
+      [(ngModel)]="passwordCheck"
+      name="passwordCheck"
+      #passCheck="ngModel"
+      minlength="5"
+      pattern={{password}}
+    />
+    <div *ngIf="passCheck.touched" >
+      <p *ngIf="passCheck.errors?.required" class="alert alert-danger">passwordCheck is a required</p>
+      <p *ngIf="passCheck.errors?.minlength" class="alert alert-danger">Min length of the password should be 5 characters</p>
+      <p *ngIf="passCheck.errors?.pattern" class="alert alert-danger">passwords do not match</p>
     </div>
 
-    <div class="form-group">
-      <i class="fas fa-lock"></i>
-      <input
-        type="password"
-        [(ngModel)]="passwordCheck"
-        placeholder="Confirm password"
-        name="passwordCheck"
-        class="input"
-        required
-      />
-    </div>
-
-    <button class="btn-submit" type="submit">CREATE ACCOUNT</button>
+    <button
+      class="btn-submit"
+      type="submit"
+      [disabled]="!newUserForm.form.valid"
+    >
+      CREATE ACCOUNT
+    </button>
   </form>
 </div>
