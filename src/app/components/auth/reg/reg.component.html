@@ -1,5 +1,10 @@
 <div class="auth">
-  <form (submit)="userRegisterClick()" class="my-form" #newUserForm="ngForm">
+  <form
+    (submit)="userRegisterClick()"
+    class="my-form"
+    appPassword
+    #userForm="ngForm"
+  >
     <h1 class="header">Create a new account</h1>
     <flash-messages></flash-messages>
 
@@ -12,7 +17,10 @@
       name="name"
       #username="ngModel"
     />
-    <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
+    <div
+      [hidden]="username.valid || username.pristine"
+      class="alert alert-danger"
+    >
       Username is required
     </div>
 
@@ -24,11 +32,15 @@
       [(ngModel)]="email"
       name="email"
       #mail="ngModel"
-      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" 
+      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
     />
-    <div *ngIf="mail.touched" >
-      <p *ngIf="mail.errors?.required" class="alert alert-danger">Email is a required</p>
-      <p *ngIf="mail.errors?.pattern" class="alert alert-danger">This is not a valid Email</p>
+    <div *ngIf="mail.touched">
+      <p *ngIf="mail.errors?.required" class="alert alert-danger">
+        Email is a required
+      </p>
+      <p *ngIf="mail.errors?.pattern" class="alert alert-danger">
+        This is not a valid Email
+      </p>
     </div>
 
     <input
@@ -41,11 +53,15 @@
       #pass="ngModel"
       minlength="5"
     />
-    <div *ngIf="pass.touched" >
-      <p *ngIf="pass.errors?.required" class="alert alert-danger">Password is a required</p>
-      <p *ngIf="pass.errors?.minlength" class="alert alert-danger">Min length of the password should be 5 characters</p>
+    <div *ngIf="pass.touched">
+      <p *ngIf="pass.errors?.required" class="alert alert-danger">
+        Password is a required
+      </p>
+      <p *ngIf="pass.errors?.minlength" class="alert alert-danger">
+        Min length of the password should be 5 characters
+      </p>
     </div>
-    
+
     <input
       type="password"
       class="form-control"
@@ -55,19 +71,20 @@
       name="passwordCheck"
       #passCheck="ngModel"
       minlength="5"
-      pattern={{password}}
     />
-    <div *ngIf="passCheck.touched" >
-      <p *ngIf="passCheck.errors?.required" class="alert alert-danger">passwordCheck is a required</p>
-      <p *ngIf="passCheck.errors?.minlength" class="alert alert-danger">Min length of the password should be 5 characters</p>
-      <p *ngIf="passCheck.errors?.pattern" class="alert alert-danger">passwords do not match</p>
+    <div *ngIf="passCheck.touched">
+      <p *ngIf="passCheck.errors?.required" class="alert alert-danger">
+        passwordCheck is a required
+      </p>
+      <p *ngIf="passCheck.errors?.minlength" class="alert alert-danger">
+        Min length of the password should be 5 characters
+      </p>
+      <p *ngIf="userForm.errors?.passwordsNotEqual && (userForm.touched || userForm.dirty)" class="alert alert-danger">
+        passwords do not match
+      </p>
     </div>
 
-    <button
-      class="btn-submit"
-      type="submit"
-      [disabled]="!newUserForm.form.valid"
-    >
+    <button class="btn-submit" type="submit" [disabled]="userForm.invalid">
       CREATE ACCOUNT
     </button>
   </form>

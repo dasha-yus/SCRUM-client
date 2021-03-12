@@ -21,6 +21,7 @@ import { NewProjectComponent } from './components/new-project/new-project.compon
 import { NewTaskComponent } from './components/task/new-task/new-task.component';
 import { EditTaskComponent } from './components/task/edit-task/edit-task.component';
 import { NotFoundComponent } from './components/404/404.component';
+import { PasswordValidatorDirective } from './components/auth/reg/password-validator.directive';
 
 const appRoute: Routes = [
   { path: '', component: HomeComponent, canActivate: [IsLoggedIn] },
@@ -59,6 +60,7 @@ const appRoute: Routes = [
     NewTaskComponent,
     EditTaskComponent,
     NotFoundComponent,
+    PasswordValidatorDirective,
   ],
 
   imports: [

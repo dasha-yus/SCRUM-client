@@ -11,14 +11,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./new-project.component.scss'],
 })
 export class NewProjectComponent implements OnInit {
-  myForm: FormGroup = new FormGroup({
-    name: new FormControl("", Validators.required),
-    decription: new FormControl("", Validators.required)
-  });
-
-  name: string;
-  description: string;
-  submitted: boolean = false;
+  myForm: FormGroup;
 
   constructor(
     private CRUDService: CRUDService,
@@ -26,18 +19,22 @@ export class NewProjectComponent implements OnInit {
     private flashMessages: FlashMessagesService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.myForm = new FormGroup({
+      name: new FormControl('', Validators.required),
+      decription: new FormControl('', Validators.required),
+    });
+  }
 
   addNewProject() {
     const project: Project = {
       author: localStorage.getItem('user_id'),
-      name: this.name,
-      description: this.description,
+      name: this.myForm.controls['name'].value,
+      description: this.myForm.controls['decription'].value,
     };
     this.CRUDService.postRequest('/projects/new-project', project).subscribe(
       (data: Project) => {
         localStorage.setItem('current_project', data._id);
-        this.submitted = true;
         this.router.navigate([`/`]);
       },
       (err) => {
